@@ -31,7 +31,6 @@ app.post('/api/update-language-data', async (req: Request, res: Response) => {
     const {opt,newVoteNum} = req.body;
     try{
         await Languages.findOneAndUpdate({'data.option': opt},{$set:{'data.$.vote': newVoteNum}});
-        console.log(newVoteNum);
     }catch(error){
         res.status(500).json({message : (error as Error).message});
     }

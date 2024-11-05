@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Home,Briefcase,AppWindow,ChevronLeft,ChevronRight} from 'lucide-react'
-import logo from '../assets/please.gif'
+import logo from '/please.gif'
 
 interface NavItem {
     label: string;
@@ -8,11 +8,13 @@ interface NavItem {
     href: string;
 }
 
+
 const navItems: NavItem[] = [
     { label: 'Home', icon: <Home size={20} />, href: '/' },
     { label: 'Work', icon: <Briefcase size={20} />, href: '/work' },
     { label: 'Projects', icon: <AppWindow size={20} />, href: '/projects' },
 ];
+
 
 
 interface SideBarProps{
@@ -23,10 +25,10 @@ interface SideBarProps{
 const SideBar: React.FC<SideBarProps> = ({isExpanded,setIsExpanded}) => {
 
     return (
-        <div
+      <div
         className={`fixed top-0 left-0 h-full bg-gray-900 text-white transition-all duration-300 ease-in-out flex flex-col
             ${isExpanded ? 'w-52' : 'w-16'}`}
-        >
+      >
         {/* Header section with logo and toggle */}
         <div className="h-16 px-4 flex items-center justify-between border-b border-gray-800">
           {isExpanded &&<div className="flex items-center gap-3 min-w-0">
@@ -72,7 +74,7 @@ const SideBar: React.FC<SideBarProps> = ({isExpanded,setIsExpanded}) => {
             ))}
             </ul>
         </nav>
-        </div>
+      </div>
   );
 }
 

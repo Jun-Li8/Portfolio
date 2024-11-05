@@ -10,17 +10,19 @@ function App() {
   const [isExpanded, setIsExpanded] = useState(true);
   return (
     <>
+    <div className="bg-stone-100 min-h-screen min-w-screen">
       <SideBar isExpanded={isExpanded} setIsExpanded={setIsExpanded}/>
-      <main className={`flex-1 transition-all duration-300 ease-in-out ${isExpanded ? 'ml-56' : 'ml-16'}`}>
-        <div className={"p-6"}>
-          <Routes>
-            <Route path='/' element={<Home/>}/>
-            <Route path='home' element={<Home/>}/>
-            <Route path='projects' element={<Project/>}/>
-            <Route path='work' element={<Work/>}/>
-          </Routes>
-        </div>
-      </main>
+        <main className={`flex-1 transition-all duration-300 ease-in-out ${isExpanded ? 'ml-52' : 'ml-16'}`}>
+          <div className={"p-6"}>
+            <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='home' element={<Home/>}/>
+              <Route path='projects' element={<Project/>}/>
+              <Route path='work' element={<Work/>}/>
+            </Routes>
+          </div>
+        </main>
+    </div>
     </>
   )
 }
