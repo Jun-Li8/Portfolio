@@ -1,4 +1,4 @@
-import mongoose, {model, Schema} from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 interface ILangData extends Document {
     option: string;
@@ -22,4 +22,4 @@ const LanguagesSchema: Schema = new Schema({
 
 const Languages = mongoose.model<ILanguages>('Languages',LanguagesSchema,'Languages');
 
-export {ILanguages,Languages,ILangData}
+export {Languages,type ILangData}

@@ -1,11 +1,10 @@
-import React, { useState, useEffect,useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ThumbsUp } from 'lucide-react';
 import {ILangData} from '../../../backend/src/model/Languages'
 
-
-const API_URL = "http://localhost:3000"
+const API_URI="https://api.zejunli.org"
 
 //const colors = ["bg-green-500","bg-gray-500","bg-red-500","bg-yellow-500","bg-purple-500","bg-orange-500","bg-blue-500","bg-pink-500"];
 
@@ -15,7 +14,7 @@ const InteractivePoll = () => {
   useEffect(() => {
       const fetchAllCollections = async () => {
           try{
-              const response = await fetch(`${API_URL}/api/get-language-data`);
+              const response = await fetch(`${API_URI}/api/get-language-data`);
               const data = await response.json();
               setPollData(data.data);
           } catch (error){
@@ -31,7 +30,7 @@ const InteractivePoll = () => {
 
   const updateVoteDB = async (opt: string, newVoteNum: number) => {
     try{
-      await fetch(`${API_URL}/api/update-language-data`, {
+      await fetch(`${API_URI}/api/update-language-data`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

@@ -1,8 +1,8 @@
-import express, { json, Request, Response } from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { ILanguages,Languages } from './model/Languages';
+import { Languages } from './model/Languages';
 
 dotenv.config();
 
@@ -17,6 +17,15 @@ mongoose.connect(process.env.MONGODB_URI as string)
 app.use(cors());                         // Enable CORS for all routes
 app.use(express.json());                 // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+
+app.get('/', (req: Request, res: Response) => {
+    console.log('Visited this site');
+    res.json({
+        success: true,
+        message: 'Welcome to the TypeScript server!'
+    });
+});
 
 app.get('/api/get-language-data', async (req:Request, res:Response) => {
     try{

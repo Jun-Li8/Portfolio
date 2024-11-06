@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {Home,Briefcase,AppWindow,ChevronLeft,ChevronRight} from 'lucide-react'
 import logo from '/please.gif'
 
