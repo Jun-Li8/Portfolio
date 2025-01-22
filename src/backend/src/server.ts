@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { Languages } from './model/Languages';
+import { BlogModel } from './model/BlogModel';
 
 dotenv.config();
 
@@ -44,6 +45,20 @@ app.post('/api/update-language-data', async (req: Request, res: Response) => {
         res.status(500).json({message : (error as Error).message});
     }
 });
+
+app.post('/api/create-new-blog', async (req: Request, res: Response) => {
+    const {title,content} = req.body;
+    console.log('Params:',title,content);
+    try{
+        const ids = await BlogModel.insertMany([{title: title, content: content}]);
+        console.log('Inserted documents: ', ids);
+        res.json(ids);
+    }catch (error){
+        res.status(500).json({message: (error as Error).message});
+    }
+});
+
+
 
 // Start server
 const PORT = 3000;

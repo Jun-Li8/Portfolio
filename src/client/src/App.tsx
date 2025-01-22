@@ -3,6 +3,8 @@ import {Routes,Route} from 'react-router-dom'
 import Home from './pages/Home'
 import Project from './pages/Project'
 import Work from './pages/Work'
+import Blog from './pages/Blog'
+import BlogComposer from './pages/BlogComposer'
 import SideBar from './components/SideBar'
 
 
@@ -19,6 +21,8 @@ function App() {
               <Route path='home' element={<Home/>}/>
               <Route path='projects' element={<Project/>}/>
               <Route path='work' element={<Work/>}/>
+              <Route path='blog' element={<Blog/>}/>
+              <Route path='blog/composer' element={<BlogComposer/>} />
             </Routes>
           </div>
         </main>

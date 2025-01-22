@@ -1,5 +1,5 @@
 import React from 'react';
-import {Home,Briefcase,AppWindow,ChevronLeft,ChevronRight} from 'lucide-react'
+import {Home,Briefcase,AppWindow,ChevronLeft,ChevronRight, Newspaper} from 'lucide-react'
 import logo from '/please.gif'
 
 interface NavItem {
@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
     { label: 'Home', icon: <Home size={20} />, href: '/' },
     { label: 'Work', icon: <Briefcase size={20} />, href: '/work' },
     { label: 'Projects', icon: <AppWindow size={20} />, href: '/projects' },
+    { label: 'Blog', icon: <Newspaper size={20}/>, href: '/blog'}
 ];
 
 

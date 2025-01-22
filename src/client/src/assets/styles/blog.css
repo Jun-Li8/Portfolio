@@ -1,0 +1,43 @@
+.blogComposeTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.blogComposeContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+input{
+    border: solid black;
+    border-radius: 5px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.createOrEditButton{
+    background-color:#1877F2;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.tiptap {
+    min-height: 80px;
+    /* List styles */
+    ul, 
+    ol {
+      padding: 0 1rem;
+      list-style: square;
+    }
+    h1 { 
+        font-size: 1.4rem; 
+      }
+    
+    h2 { 
+        font-size: 1.2rem; 
+    }
+    
+  }

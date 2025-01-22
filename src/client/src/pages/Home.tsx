@@ -16,7 +16,7 @@ const Home = () => {
                         1200,
                         "Hi, I'm Jun. I'm a System Architect.",
                         1200,
-                        "Hi, I'm Jun. I'm a Lifelong Student",
+                        "Hi, I'm Jun. I'm a Lifelong Student.",
                         1200,
                     ]}
                     wrapper="span"
