@@ -6,6 +6,7 @@ import Work from './pages/Work'
 import Blog from './pages/Blog'
 import BlogComposer from './pages/BlogComposer'
 import SideBar from './components/SideBar'
+import { BlogPost } from './pages/BlogNewsFeed'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path='work' element={<Work/>}/>
               <Route path='blog' element={<Blog/>}/>
               <Route path='blog/composer' element={<BlogComposer/>} />
+              <Route path='blog/post/:id' element={<BlogPost />} />
             </Routes>
           </div>
         </main>

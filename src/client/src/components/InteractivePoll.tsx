@@ -6,6 +6,8 @@ import {ILangData} from '../../../backend/src/model/Languages'
 
 const API_URI="https://api.zejunli.org"
 
+//const colors = ["bg-green-500","bg-gray-500","bg-red-500","bg-yellow-500","bg-purple-500","bg-orange-500","bg-blue-500","bg-pink-500"];
+
 const InteractivePoll = () => {
   // In a real app, this would come from MongoDB
   const [pollData, setPollData] = useState<ILangData[]>([])

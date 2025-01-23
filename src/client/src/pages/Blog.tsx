@@ -1,15 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import '../assets/styles/blog.css'
-import BlogComposer from "./BlogComposer";
+import { BlogNewsFeed } from "./BlogNewsFeed";
 
 const Blog = () => {
     return (
         <div>
-            <Link to={'/blog/composer'}>
-                <h1>New Blog</h1>
-            </Link>
-            <BlogComposer />
+            <button className="makeBlogButton">
+                <Link to={'/blog/composer'}>
+                    New Blog
+                </Link>
+            </button>
+            <BlogNewsFeed />
         </div>
     );
 }

@@ -6,6 +6,7 @@ import RichTextEditor from "@/components/RichTextEditor";
 const BlogComposer = () => {
     const apiURI = import.meta.env.VITE_API_URI;
     const [title,setTitle] = useState<string>("");
+    const [shortDescription,setShortDescription] = useState<string>("")
     const [content,setContent] = useState<string>('');
 
     const [loading,setLoading] = useState<boolean>(false);
@@ -22,7 +23,7 @@ const BlogComposer = () => {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({title,content})
+                body: JSON.stringify({title,shortDescription,content})
             });
             const data = await response.text()
             console.log(data);
@@ -36,8 +37,12 @@ const BlogComposer = () => {
     return (
         <form onSubmit={handleCreateBlog} className="blogComposeContainer">
             <div className="blogComposeTitle max-w-4xl">
-                <label>Title</label>
-                <input type="text" value={title} onChange={(event) => {setTitle(event.currentTarget.value)}}/>
+                <label>Title:</label>
+                <input type="text" name='title' value={title} onChange={(event) => {setTitle(event.currentTarget.value)}}/>
+            </div>
+            <div className="blogComposeTitle max-w-4xl">
+                <label>Short Description:</label>
+                <input type="text" name='shortDescription' value={shortDescription} onChange={(event) => {setShortDescription(event.currentTarget.value)}}/>
             </div>
             <div>
                 <RichTextEditor content={content} onContentChange={handleContentChange}/>
