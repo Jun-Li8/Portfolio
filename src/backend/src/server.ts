@@ -67,6 +67,15 @@ app.get('/api/get-all-blogs', async (req: Request, res: Response) => {
     }
 });
 
+app.get('/api/get-a-blog-post/:blogID', async (req: Request, res: Response) => {
+    try{
+        const blog = await BlogModel.findById(req.params.blogID);
+        res.json(blog);
+    }catch(error){
+        res.status(500).json({message : (error as Error).message});
+    }
+})
+
 
 
 // Start server

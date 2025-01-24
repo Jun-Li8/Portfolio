@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import '../assets/styles/blog.css'
-import { BlogNewsFeed } from "./BlogNewsFeed";
+import { BlogNewsFeed } from "../components/blogComponents/BlogNewsFeed";
 
 const Blog = () => {
     return (

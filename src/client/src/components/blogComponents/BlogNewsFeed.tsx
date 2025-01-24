@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import '../assets/styles/blog.css'
+import '../../assets/styles/blog.css'
 import { Link } from 'react-router-dom';
 
 interface BlogDocument {
@@ -9,8 +9,9 @@ interface BlogDocument {
     content?: string;
 }
 
+const apiURI = import.meta.env.VITE_API_URI;
+
 const BlogNewsFeed = () => {
-    const apiURI = import.meta.env.VITE_API_URI;
 
     const [blogs,setBlogs] = useState<BlogDocument[]>([]);
 
@@ -58,10 +59,4 @@ const BlogItem = ({blogID,title,shortDescription} : BlogItemProps) => {
     )
 }
 
-const BlogPost = () => {
-    return (
-        <h1>Blog Post</h1>
-    )
-}
-
-export {BlogNewsFeed, BlogPost};
+export {BlogNewsFeed, type BlogDocument};

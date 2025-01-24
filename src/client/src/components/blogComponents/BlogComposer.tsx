@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
-import '../assets/styles/blog.css'
-import RichTextEditor from "@/components/RichTextEditor";
+import '../../assets/styles/blog.css'
+import RichTextEditor from "@/components/blogComponents/RichTextEditor";
 
 
 const BlogComposer = () => {

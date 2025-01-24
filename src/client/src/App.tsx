@@ -4,9 +4,9 @@ import Home from './pages/Home'
 import Project from './pages/Project'
 import Work from './pages/Work'
 import Blog from './pages/Blog'
-import BlogComposer from './pages/BlogComposer'
+import BlogComposer from './components/blogComponents/BlogComposer'
 import SideBar from './components/SideBar'
-import { BlogPost } from './pages/BlogNewsFeed'
+import BlogPost from './components/blogComponents/BlogPost'
 
 
 function App() {

@@ -77,3 +77,9 @@ input{
 .blogItem:hover{
     text-decoration: underline;
 }
+
+.blogPostContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

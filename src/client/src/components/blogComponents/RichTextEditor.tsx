@@ -6,7 +6,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import BulletList from '@tiptap/extension-bullet-list';
 import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
-import '../assets/styles/blog.css';
+import '../../assets/styles/blog.css';
 import { Bold, Italic, Underline as UnderlineIcon, AlignLeft, AlignCenter, AlignRight, List, Heading1, Heading2 } from 'lucide-react';
 
 

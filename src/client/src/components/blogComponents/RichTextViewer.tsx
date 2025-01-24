@@ -6,15 +6,32 @@ import TextAlign from '@tiptap/extension-text-align';
 import BulletList from '@tiptap/extension-bullet-list';
 import ListItem from '@tiptap/extension-list-item';
 import Heading from '@tiptap/extension-heading';
-import '../assets/styles/blog.css';
+import '../../assets/styles/blog.css';
+import { generateJSON } from '@tiptap/core'
 
 interface RichTextViewerProps {
-    title: string,
-    content: string,
+    content: string | undefined,
     className?: string
 }
 
-const RichTextViewer = ({title,content,className=''}: RichTextViewerProps) => {
+// Convert HTML string to TipTap Content
+const htmlToTipTapContent = (htmlString: string | undefined): any => {
+  return generateJSON(htmlString || '', [
+    StarterKit,
+    Underline,
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+    }),
+    BulletList,
+    ListItem,
+    Heading.configure({
+      levels: [1,2],
+    }),
+    // Add any additional extensions you're using
+  ]);
+}
+
+const RichTextViewer = ({content,className=''}: RichTextViewerProps) => {
     const editor = useEditor({
         extensions: [
         StarterKit,
@@ -28,7 +45,6 @@ const RichTextViewer = ({title,content,className=''}: RichTextViewerProps) => {
             levels: [1,2],
           }),
         ],
-        content,
         editorProps: {
           attributes: {
             class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none',
@@ -40,10 +56,10 @@ const RichTextViewer = ({title,content,className=''}: RichTextViewerProps) => {
     if (!editor) {
         return null;
     }
-
+    editor.commands.setContent(htmlToTipTapContent(content));
     return (
         <div>
-            <h1>{title}</h1>
+            {JSON.stringify(htmlToTipTapContent(content))}
             <EditorContent editor={editor}/>
         </div>
     )
