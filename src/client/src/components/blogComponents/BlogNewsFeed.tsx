@@ -31,7 +31,7 @@ const BlogNewsFeed = () => {
     return (
         <div className='newsFeedContainer'>
             {blogs.map((blogItem) => 
-                (<BlogItem 
+                (<BlogItem
                     blogID={blogItem._id} 
                     title={blogItem.title} 
                     shortDescription={blogItem.shortDescription}/>)
@@ -48,7 +48,7 @@ interface BlogItemProps{
 
 const BlogItem = ({blogID,title,shortDescription} : BlogItemProps) => {
     return (
-        <div className='blogItem'>
+        <div id={blogID} className='blogItem'>
             <Link to={`/blog/post/${blogID}`}>
                 <div>
                     <label className='text-xl font-bold'>{title}</label>

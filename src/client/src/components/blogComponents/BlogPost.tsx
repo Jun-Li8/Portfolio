@@ -27,11 +27,33 @@ const BlogPost = () => {
     });
     return (
         <div>
-            <div>
+            <div className='blogPostHeader'>
                 <h1 className="text-2xl">{blogContent?.title}</h1>
                 <p>{blogContent?.shortDescription}</p>
             </div>
-            <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blogContent?.content || '')}} />
+            <div className='blogPostContent' 
+                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blogContent?.content || '')}} />
+            <div>
+                <h1 className='text-xl font-bold'>Comments</h1>
+                <div>
+
+                </div>
+                <CommentComposer />
+            </div>
+        </div>
+    )
+}
+
+const CommentComposer = () => {
+    return (
+        <div>
+            <textarea className="w-full max-w-3xl rounded-sm p-3"name="comments" placeholder="Add a comment" id="comments" />
+            <div>
+                <div className=''>
+                    <input placeholder='Your Name'></input>
+                    <button>Add</button>
+                </div>
+            </div>
         </div>
     )
 }

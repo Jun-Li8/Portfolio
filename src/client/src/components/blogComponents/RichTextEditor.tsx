@@ -65,7 +65,7 @@ const RichTextEditor = ({content,onContentChange}: RichTextEditorProps) => {
   }
 
   return (
-    <div className="w-full max-w-4xl border rounded-lg shadow-sm">
+    <div className="w-full max-w-5xl border rounded-lg shadow-sm">
       {/* Menu Bar */}
       <div className="flex flex-wrap items-center gap-1 p-2 border-b bg-gray-50">
         {/* Text Formatting */}
@@ -88,7 +88,7 @@ const RichTextEditor = ({content,onContentChange}: RichTextEditorProps) => {
           label="Underline"
         />
 
-        <div className="w-px h-6 mx-2 bg-gray-300" />
+        <div className="w-px h-6 mx-2 bg-gray-100" />
 
         {/* Headings */}
         <MenuButton
@@ -104,7 +104,7 @@ const RichTextEditor = ({content,onContentChange}: RichTextEditorProps) => {
           label="Heading 2"
         />
 
-        <div className="w-px h-6 mx-2 bg-gray-300" />
+        <div className="w-px h-6 mx-2 bg-gray-100" />
 
         {/* Alignment */}
         <MenuButton
@@ -126,7 +126,7 @@ const RichTextEditor = ({content,onContentChange}: RichTextEditorProps) => {
           label="Align Right"
         />
 
-        <div className="w-px h-6 mx-2 bg-gray-300" />
+        <div className="w-px h-6 mx-2 bg-gray-100" />
 
         {/* Lists */}
         <MenuButton
@@ -138,7 +138,7 @@ const RichTextEditor = ({content,onContentChange}: RichTextEditorProps) => {
       </div>
 
       {/* Editor Content */}
-      <div className="p-4">
+      <div className="p-4 bg-white">
         <EditorContent editor={editor} height={'80px'} />
       </div>
     </div>
