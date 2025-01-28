@@ -50,7 +50,7 @@ app.post('/api/create-new-blog', async (req: Request, res: Response) => {
     const {title,shortDescription,content} = req.body;
     console.log('Params:',title,content);
     try{
-        const ids = await BlogModel.insertMany([{title: title, shortDescription:shortDescription, content: content}]);
+        const ids = await BlogModel.insertMany([{title: title, shortDescription:shortDescription, content: content, blogComments: []}]);
         console.log('Inserted documents: ', ids);
         res.json(ids);
     }catch (error){
@@ -74,8 +74,20 @@ app.get('/api/get-a-blog-post/:blogID', async (req: Request, res: Response) => {
     }catch(error){
         res.status(500).json({message : (error as Error).message});
     }
-})
+});
 
+app.post('/api/create-new-comment', async (req: Request, res: Response) => {
+    const {blogID,name,comment} = req.body;
+    try{
+        const result = await BlogModel.updateOne(
+            { _id: blogID }, // Filter by user ID
+            { $push: { blogComments: {name: name, comment: comment}} }
+        );
+        console.log('Comment added to blog', blogID);
+    }catch(error){
+        console.error('Error creating a comment', error);
+    }
+});
 
 
 // Start server

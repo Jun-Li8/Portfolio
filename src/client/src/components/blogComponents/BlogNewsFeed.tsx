@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 import '../../assets/styles/blog.css'
 import { Link } from 'react-router-dom';
+import {IBlogComment} from '../../../../backend/src/model/BlogModel'
 
 interface BlogDocument {
     _id: string;
     title: string;
     shortDescription: string;
     content?: string;
+    blogComments?: IBlogComment[]
 }
 
 const apiURI = import.meta.env.VITE_API_URI;
