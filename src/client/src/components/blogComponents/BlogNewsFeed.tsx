@@ -7,11 +7,13 @@ interface BlogDocument {
     _id: string;
     title: string;
     shortDescription: string;
+    author: string;
+    createdAt: Date;
     content?: string;
     blogComments?: IBlogComment[]
 }
 
-const apiURI = import.meta.env.VITE_API_URI;
+const apiURI = "https://api.zejunli.org"
 
 const BlogNewsFeed = () => {
 
@@ -28,7 +30,7 @@ const BlogNewsFeed = () => {
             }
         }
         fetchAllBlogs();
-    })
+    },[])
 
     return (
         <div className='newsFeedContainer'>
@@ -36,7 +38,10 @@ const BlogNewsFeed = () => {
                 (<BlogItem
                     blogID={blogItem._id} 
                     title={blogItem.title} 
-                    shortDescription={blogItem.shortDescription}/>)
+                    shortDescription={blogItem.shortDescription}
+                    author={blogItem.author}
+                    createdAt={blogItem.createdAt}
+                    />)
             )}
         </div>
     )
@@ -46,15 +51,18 @@ interface BlogItemProps{
     blogID: string;
     title: string;
     shortDescription: string;
+    author: string;
+    createdAt: Date;
 }
 
-const BlogItem = ({blogID,title,shortDescription} : BlogItemProps) => {
+const BlogItem = ({blogID,title,shortDescription,author,createdAt} : BlogItemProps) => {
     return (
         <div id={blogID} className='blogItem'>
             <Link to={`/blog/post/${blogID}`}>
                 <div>
                     <label className='text-xl font-bold'>{title}</label>
-                    <h5>{shortDescription}</h5>
+                    <h6>{`${author} • ${new Date(createdAt).toISOString().split('T')[0]}`}</h6>
+                    <strong>Description: </strong><span>{shortDescription}</span>
                 </div>
             </Link>
         </div>

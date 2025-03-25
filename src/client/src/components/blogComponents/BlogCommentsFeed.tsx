@@ -1,14 +1,18 @@
 import '../../assets/styles/blog.css'
-import {IBlogComment} from '../../../../backend/src/model/BlogModel'
+
+interface BlogComment {
+    name: string;
+    comment: string;
+}
 
 interface BlogCommentFeedProps {
-    comments: IBlogComment[]
+    comments: BlogComment[]
 }
 
 const BlogCommentsFeed = ({comments}: BlogCommentFeedProps) => {
-    console.log(comments);
+    console.log('Comment structure:', comments);
     return (
-        <div>
+        <div className='blogCommentFeedContainer'>
             {comments.map((comment) => (<BlogCommentItem name={comment.name} comment={comment.comment} />))}
         </div>
     )
@@ -28,4 +32,4 @@ const BlogCommentItem = ({name,comment}:BlogCommentItemProps) => {
     )
 }
 
-export default BlogCommentsFeed
+export {BlogCommentsFeed, type BlogComment}

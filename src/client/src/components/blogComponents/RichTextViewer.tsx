@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Underline from '@tiptap/extension-underline';
@@ -31,7 +30,7 @@ const htmlToTipTapContent = (htmlString: string | undefined): any => {
   ]);
 }
 
-const RichTextViewer = ({content,className=''}: RichTextViewerProps) => {
+const RichTextViewer = ({content}: RichTextViewerProps) => {
     const editor = useEditor({
         extensions: [
         StarterKit,

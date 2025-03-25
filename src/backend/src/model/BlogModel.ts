@@ -14,6 +14,8 @@ const BlogCommentSchema: Schema = new Schema({
 interface IBlogModel extends Document{
     title: string;
     shortDescription: string;
+    createdAt: Date;
+    author: string;
     content?: string;
     blogComments?: IBlogComment[];
 }
@@ -21,6 +23,8 @@ interface IBlogModel extends Document{
 const BlogSchema: Schema = new Schema({
     title : {type: String, required: true},
     shortDescription: {type:String, required: true},
+    createdAt: {type: Date, default: Date.now, required: true},
+    author: {type: String, required: true},
     content: {type: String, required: false},
     blogComments: {type: [BlogCommentSchema], required: false}
 });

@@ -47,10 +47,10 @@ app.post('/api/update-language-data', async (req: Request, res: Response) => {
 });
 
 app.post('/api/create-new-blog', async (req: Request, res: Response) => {
-    const {title,shortDescription,content} = req.body;
+    const {title,shortDescription,content,author} = req.body;
     console.log('Params:',title,content);
     try{
-        const ids = await BlogModel.insertMany([{title: title, shortDescription:shortDescription, content: content, blogComments: []}]);
+        const ids = await BlogModel.insertMany([{title: title, shortDescription:shortDescription, content: content, blogComments: [], author: author, createdAt: new Date()}]);
         console.log('Inserted documents: ', ids);
         res.json(ids);
     }catch (error){
@@ -60,7 +60,7 @@ app.post('/api/create-new-blog', async (req: Request, res: Response) => {
 
 app.get('/api/get-all-blogs', async (req: Request, res: Response) => {
     try{
-        const blogs = await BlogModel.find({},{'title':1,'shortDescription':1});
+        const blogs = await BlogModel.find({},{'title':1,'shortDescription':1,'author':1,'createdAt':1});
         res.json(blogs);
     }catch(error){
         res.status(500).json({message : (error as Error).message});

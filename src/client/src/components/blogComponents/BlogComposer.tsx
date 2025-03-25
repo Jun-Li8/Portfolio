@@ -4,10 +4,11 @@ import RichTextEditor from "@/components/blogComponents/RichTextEditor";
 
 
 const BlogComposer = () => {
-    const apiURI = import.meta.env.VITE_API_URI;
+    const apiURI = "https://api.zejunli.org"
     const [title,setTitle] = useState<string>("");
     const [shortDescription,setShortDescription] = useState<string>("")
     const [content,setContent] = useState<string>('');
+    const [author,setAuthor] = useState<string>('');
 
     const [loading,setLoading] = useState<boolean>(false);
 
@@ -23,7 +24,7 @@ const BlogComposer = () => {
                 headers: {
                     'Content-type': 'application/json'
                 },
-                body: JSON.stringify({title,shortDescription,content})
+                body: JSON.stringify({title,shortDescription,content,author})
             });
             const data = await response.text()
             console.log(data);
@@ -46,6 +47,10 @@ const BlogComposer = () => {
             </div>
             <div>
                 <RichTextEditor content={content} onContentChange={handleContentChange}/>
+            </div>
+            <div className="blogComposeTitle max-w-md">
+                <label>Your Name:</label>
+                <input type="text" name='authorName' value={author} onChange={(event) => {setAuthor(event.currentTarget.value)}}/>
             </div>
             <div>
                 <button type="submit" className="createOrEditButton">

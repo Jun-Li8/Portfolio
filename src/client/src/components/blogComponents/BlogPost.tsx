@@ -3,16 +3,21 @@ import '../../assets/styles/blog.css'
 import { useParams } from 'react-router-dom';
 import { BlogDocument } from './BlogNewsFeed';
 import DOMPurify from 'dompurify';
-import BlogCommentsFeed from './BlogCommentsFeed';
+import {BlogCommentsFeed ,BlogComment } from './BlogCommentsFeed';
 
-const apiURI = import.meta.env.VITE_API_URI;
+const apiURI = "https://api.zejunli.org";
 
 
 
 const BlogPost = () => {
     
     const blogParams = useParams<{id: string}>();
-    const [blogContent, setBlogContent] = useState<BlogDocument | null>(null);
+    const [blogContent, setBlogContent] = useState<BlogDocument>({_id: 'initial',title: 'initial',shortDescription: 'initial',author:'initial',createdAt: new Date()});
+    const [blogComments,setComments] = useState<BlogComment[]>([])
+
+    const handleCommentChange = (newComment: BlogComment) => {
+        setComments((prevData) => [...prevData, newComment]);
+    }
     
     useEffect(() => {
         const fetchOneBlogPost = async () => {
@@ -20,17 +25,22 @@ const BlogPost = () => {
                 const response = await fetch(`${apiURI}/api/get-a-blog-post/${blogParams.id}`);
                 const data = await response.json();
                 setBlogContent(data);
+                setComments(data?.blogComments || [])
             }catch(error){
                 console.error(`Error fetching blog ${blogParams.id} :`, error);
             }
         }
         fetchOneBlogPost();
-    });
+    },[]);
+
     return (
         <div>
             <div className='blogPostHeader'>
                 <h1 className="text-2xl">{blogContent?.title}</h1>
                 <p>{blogContent?.shortDescription}</p>
+                <p>{`${blogContent.author} • ${new Date(blogContent.createdAt).toISOString().split('T')[0]}`}</p>
+            </div>
+            <div>
             </div>
             <div className='blogPostContent' 
                 dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(blogContent?.content || '')}} />
@@ -39,8 +49,8 @@ const BlogPost = () => {
                 <div>
 
                 </div>
-                <CommentComposer blogID={blogParams.id}/>
-                <BlogCommentsFeed comments={blogContent?.blogComments || []} />
+                <CommentComposer blogID={blogParams.id} onAddComment={handleCommentChange}/>
+                <BlogCommentsFeed comments={blogComments} />
             </div>
         </div>
     )
@@ -48,10 +58,11 @@ const BlogPost = () => {
 
 interface CommentComposerProps {
     blogID: string | undefined;
+    onAddComment: (newComment: BlogComment) => void;
 }
 
 
-const CommentComposer = ({blogID}: CommentComposerProps) => {
+const CommentComposer = ({blogID, onAddComment}: CommentComposerProps) => {
     const [comment,setComment] = useState<string>('');
     const [name, setName] = useState<string>('');
 
@@ -60,7 +71,10 @@ const CommentComposer = ({blogID}: CommentComposerProps) => {
     const handleCreateComment = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
+        console.log('Loading is now', loading);
         try{
+            setLoading(false);
+            onAddComment({name:name, comment: comment});
             await fetch(`${apiURI}/api/create-new-comment`,{
                 method: 'POST',
                 headers: {
@@ -71,7 +85,7 @@ const CommentComposer = ({blogID}: CommentComposerProps) => {
         }catch(error){
             console.log('Error creating a comment:', error);
         }finally{
-            setLoading(false);
+            console.log('Loading is nowz', loading);
         }
     }
     return (
